@@ -31,3 +31,4 @@ D:\2DS\DS\OmniMarket\obj\Debug\net9.0\refint\OmniMarket.dll
 D:\2DS\DS\OmniMarket\obj\Debug\net9.0\OmniMarket.pdb
 D:\2DS\DS\OmniMarket\obj\Debug\net9.0\OmniMarket.genruntimeconfig.cache
 D:\2DS\DS\OmniMarket\obj\Debug\net9.0\ref\OmniMarket.dll
+D:\2DS\DS\OmniMarket\obj\Debug\net9.0\OmniMarket.sourcelink.json

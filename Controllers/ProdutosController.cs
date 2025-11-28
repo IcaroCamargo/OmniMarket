@@ -35,23 +35,56 @@ namespace OmniMarket.Controllers
         public IActionResult AlterarNome(Produtos p)
         {
             Produtos produtoAlterado = produtos.Find(prod => prod.idProduto == p.idProduto);
-            if(p.txtNome != produtoAlterado.txtNome)
+            try
+            {
+                 if(p.txtNome != produtoAlterado.txtNome)
                 {
-                    if(p.vlProduto != produtoAlterado.vlProduto)
-                    {
-
-                        produtoAlterado.vlProduto = p.vlProduto;
-                    }
-                    produtoAlterado.txtNome = p.txtNome;
-                    
+                    produtoAlterado.txtNome = p.txtNome;  
+                }
+                else if(p.idCategoria != produtoAlterado.idCategoria)
+                {
+                    produtoAlterado.idCategoria = p.idCategoria;
+                }
+                else if(p.vlProduto != produtoAlterado.vlProduto)
+                {
+                    produtoAlterado.vlProduto = p.vlProduto;
+                }
+                else if(p.qtdEstoque != produtoAlterado.qtdEstoque)
+                {
+                    produtoAlterado.qtdEstoque = p.qtdEstoque;
+                }
+                else if(p.txtDescricao != produtoAlterado.txtDescricao)
+                {
+                    produtoAlterado.txtDescricao = p.txtDescricao;
                 }
                 else
                 {
-                    return BadRequest ("Nome e igual");
+                    return BadRequest ("Nenhuma alteração encontrada");
                 }
-
-
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest (ex.Message);
+                
+            }
             return Ok(produtos);
         }
+
+        [HttpPut("/Excluir")]
+        public IActionResult Desativar (Produtos p)
+        {
+            Produtos status = produtos.Find(prod => prod.idProduto == p.idProduto);
+            if(p.stAtivo = true)
+            {
+                p.stAtivo = false;
+            }
+            else
+            {
+                return BadRequest("Item não existente");
+            }
+            return Ok(produtos);
+            
+        }
+
     }
 }
