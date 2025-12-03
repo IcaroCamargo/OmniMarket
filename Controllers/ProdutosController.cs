@@ -27,7 +27,7 @@ namespace OmniMarket.Controllers
         [HttpGet("GetAll")]
         public IActionResult Get()
         {
-            return Ok(produtos[0]);
+            return Ok(produtos);
         }
 
         [HttpPut]
@@ -70,17 +70,17 @@ namespace OmniMarket.Controllers
             return Ok(produtos);
         }
 
-        [HttpPut("/Excluir")]
-        public IActionResult Desativar (Produtos p)
+            [HttpPut("Excluir/{id}")]
+        public IActionResult Desativar (int id)
         {
-            Produtos status = produtos.Find(prod => prod.idProduto == p.idProduto);
-            if(p.stAtivo = true)
+            var produtoCancelado = produtos.FirstOrDefault(p => p.idProduto == id);
+            if(produtoCancelado == null)
             {
-                p.stAtivo = false;
+                return NotFound("Produto ja inativo");
             }
             else
             {
-                return BadRequest("Item não existente");
+                produtoCancelado.stAtivo= false;
             }
             return Ok(produtos);
             
